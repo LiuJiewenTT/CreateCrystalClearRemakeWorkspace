@@ -1,0 +1,11 @@
+.vscode/
+.idea/
+.temp/
+.codefree/
+
+__pycache__/
+*.pyc
+*.class
+*.jar
+
+keep_local/
