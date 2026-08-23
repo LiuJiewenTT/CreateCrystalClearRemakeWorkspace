@@ -156,7 +156,7 @@ Adonis 新增了两个空实现：
 
 原始项目没有这两个文件。
 
-### 3.8 可疑战利品表（仅 Adonis）
+### 3.8 可疑战利品表与多余构建依赖（仅 Adonis）
 
 Adonis 的项目中存在与本模组无关的战利品表文件：
 - `centrifugal_pump.json`
@@ -165,7 +165,13 @@ Adonis 的项目中存在与本模组无关的战利品表文件：
 - `pipette.json`
 - `smart_fluid_interface.json`
 
-这些文件名指向其他 Create 附属模组的功能，疑似从其他项目残留。原始项目无此问题。
+这些文件名指向其他 Create 附属模组（炽海生机，modId `fluid` / `nether-depths-upgrade`）的功能。原始项目无此问题。
+
+此外，`build.gradle` 中还有两个多余的 `localImplementation` 依赖（同样来自 Adonis）：
+- `nether-depths-upgrade`（炽海生机）
+- `geckolib`（炽海生机的依赖库）
+
+这两个依赖 Java 代码零引用、mods.toml 未声明，但因 `localImplementation` 被 `runtimeClasspath` 继承，导致 `runClient` 时加载了炽海生机 mod，创造背包多出无关类别。本次重建已移除这两个依赖（commit `102f8fe`）。战利品表保留不删除（运行时不会被加载，无实际影响）。
 
 ### 3.9 old_copper 贴图（仅 Adonis）
 
