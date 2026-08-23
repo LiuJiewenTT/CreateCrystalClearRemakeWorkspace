@@ -194,10 +194,13 @@ Adonis 包含 6 个 `old_copper_*.png` 贴图（旧版铜色调），与对应�
 
 ## 附：LoneStarFateZero 修复版与 Adonis 原版的区别
 
-LoneStarFateZero 的仓库仅有一个初始提交（`0287466 修复缺失文件`），包含完整的 419 个文件。经与 Adonis 原始版（depth=1 克隆）逐文件比对，LoneStarFateZero **不仅仅是编译修复，还做了功能补全**：
+LoneStarFateZero（GitHub 用户名 LoneStarFateZero，提交署名 LoneStar / Lonely Star，为同一人）的仓库包含 20 个提交（含 merge commit），其中 14 个来自 Adonis 原始开发历史，6 个来自 LoneStar 的修复和补全。Adonis 的最后一个提交是 `ea36bb3 补充配方`，LoneStar 在此基础上进行了以下改动：
 
 1. **46 个新增资源文件**：全部是 copper glass 包覆系列的 blockstate + model 文件（glass 和 illumination 两个系列的 encased shaft/cogwheel/large_cogwheel，各 3 种 × 2 系列 × 多种变体）
 2. **1 处代码修改**：`CasingTypes.java` 的 `GENERAL_ENCASED` 枚举新增了 `createHolder("copper", AllBlocks.COPPER_CASING)`（Adonis 原版没有 copper）
 3. **1 个 CI 文件**：`.github/workflows/gradle-publish.yml`
+4. **bug 修复**：提交 `a55a4c4 修复bug`（具体内容需进一步检查）
 
 但 LoneStarFateZero 的补全不完整：`ILLUMINATION_ENCASED` 枚举仍未加入 copper（本次重建已修复，见已处理问题 #7）。
+
+LoneStarFateZero 的贡献在于：在 Adonis 的基础上补全了 copper glass 包覆系列的资源文件和注册，添加了 CI 发布流程，使项目可以编译和发布。
