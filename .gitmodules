@@ -7,3 +7,6 @@
 [submodule "referring_repos/LoneStarFateZero"]
 	path = referring_repos/LoneStarFateZero
 	url = https://github.com/LoneStarFateZero/CreatePrism.git
+[submodule "referring_repos/adonis"]
+	path = referring_repos/adonis
+	url = https://github.com/adonis-baffin/CreatePrism.git
