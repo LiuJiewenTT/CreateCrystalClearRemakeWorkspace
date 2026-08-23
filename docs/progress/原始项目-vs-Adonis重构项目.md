@@ -194,12 +194,10 @@ Adonis 包含 6 个 `old_copper_*.png` 贴图（旧版铜色调），与对应�
 
 ## 附：LoneStarFateZero 修复版与 Adonis 原版的区别
 
-LoneStarFateZero 的仓库仅有一个初始提交（`0287466 修复缺失文件`），包含完整的 419 个文件。由于 Adonis 的原始仓库不完整（缺少部分文件导致无法编译），LoneStarFateZero 的修复本质上是补全了 Adonis 项目缺失的文件，使其可以正常编译。
+LoneStarFateZero 的仓库仅有一个初始提交（`0287466 修复缺失文件`），包含完整的 419 个文件。经与 Adonis 原始版（depth=1 克隆）逐文件比对，LoneStarFateZero **不仅仅是编译修复，还做了功能补全**：
 
-经比对本项目的重建子模块与 LoneStarFateZero 版，两者代码完全一致（LoneStarFateZero 版仅做了编译修复，无功能性变更）。具体表现为：
+1. **46 个新增资源文件**：全部是 copper glass 包覆系列的 blockstate + model 文件（glass 和 illumination 两个系列的 encased shaft/cogwheel/large_cogwheel，各 3 种 × 2 系列 × 多种变体）
+2. **1 处代码修改**：`CasingTypes.java` 的 `GENERAL_ENCASED` 枚举新增了 `createHolder("copper", AllBlocks.COPPER_CASING)`（Adonis 原版没有 copper）
+3. **1 个 CI 文件**：`.github/workflows/gradle-publish.yml`
 
-1. **单一提交**：仓库只有一个 commit，无法从中分离出"修复了哪些文件"的增量信息
-2. **无功能性变更**：与 Adonis 原始设计完全一致，仅确保项目可编译
-3. **保留所有 Adonis 特征**：包括空 Mixin、空 Ponder、可疑战利品表、old_copper 贴图、Copper 系列贴图缺失等所有 Adonis 遗留问题
-
-LoneStarFateZero 的贡献在于：将 Adonis 的不完整项目整理为可编译、可发布的完整状态，为后续重建工作提供了可靠的基础。
+但 LoneStarFateZero 的补全不完整：`ILLUMINATION_ENCASED` 枚举仍未加入 copper（本次重建已修复，见已处理问题 #7）。
