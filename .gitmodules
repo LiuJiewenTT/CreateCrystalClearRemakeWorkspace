@@ -1,3 +1,9 @@
 [submodule "repo/Create-Crystal-Clear"]
 	path = repo/Create-Crystal-Clear
 	url = https://github.com/LiuJewenTT/Create-Crystal-Clear.git
+[submodule "referring_repos/c0nnor263"]
+	path = referring_repos/c0nnor263
+	url = https://github.com/c0nnor263/Crystal-Clear-Arch.git
+[submodule "referring_repos/LoneStarFateZero"]
+	path = referring_repos/LoneStarFateZero
+	url = https://github.com/LoneStarFateZero/CreatePrism.git
