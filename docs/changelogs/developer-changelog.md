@@ -5,6 +5,35 @@
 
 ---
 
+## v2.1.0（2026-09-05）
+
+### 新功能：玻璃机壳包覆铜水管
+
+- **方块类**：新增 `GlassEncasedPipeBlock`（继承 `EncasedPipeBlock`，透光属性）和 `IlluminationEncasedPipeBlock`（继承前者，`lightLevel(15)`）
+- **BlockEntity**：`CPBlockEntities` 新增 `GLASS_ENCASED_PIPE`（覆盖 glass + clear_glass 8 方块）和 `ILLUMINATION_ENCASED_PIPE`（覆盖 illumination 4 方块），均复用 `FluidPipeBlockEntity`
+- **方块注册**：`CPBlocks` 新增 3 组 `GlassBlockEntry`（glass / clear_glass / illumination），每组 4 材质 = 12 方块
+- **Builder**：`GlassBlockBuilders` 新增 `glassEncasedPipe()` 和 `illuminationEncasedPipe()`，含 `PipeAttachmentModel::withAO` 注册、CT 注册、`casingConnectivity` 注册
+- **包覆注册**：`CrystalClear.registerEncasingVariants()` 在 `onCommonSetup` 中注册 `EncasingRegistry.addVariant(AllBlocks.FLUID_PIPE.get(), ...)` × 3 组
+- **资源文件**：12 blockstate JSON、6 父模型 + 24 材质变体模型、36 条语言翻译、12 个 mineable/pickaxe 条目、12 个战利品表（均掉落铜水管）
+- **创造栏**：`CPCreativeTab` 的 `showEncasedVariants` 分支补上 3 组 pipe 变体
+
+### 修复
+
+- **PipeAttachmentModel 注册缺失**：两个 pipe builder 补上 `.onRegister(blockModel(() -> PipeAttachmentModel::withAO))`
+- **创造栏缺 12 个水管变体**：`CPCreativeTab` 遗漏 pipe 变体，已补上
+
+### 技术发现
+
+- **原版铜机壳包覆水管不渲染内部铜管**：`EncasedPipeBlock` 不继承 `FluidPipeBlock`，`isPipe()` 返回 false，`StandardPipeFluidTransportBehaviour.getRenderedRimAttachment()` 对 `EncasedPipeBlock` 返回 `NONE`。这是原版设计，玻璃机壳透视内部铜管为未来计划
+
+### 技术债务新增
+
+| 编号 | 描述 | 状态 |
+|------|------|------|
+| #11 | 玻璃机壳水管内部铜管不渲染（原版一致行为，用户希望未来实现透视） | 已搁置 |
+
+---
+
 ## v2.0.0（2026-08-27）
 
 基于 LoneStarFateZero 修复版（CreatePrism）完全重建，更名回归 Create Crystal Clear。
